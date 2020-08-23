@@ -1,0 +1,126 @@
+package week04;
+
+/**
+ * Skeleton code for an array based implementation of Young's tableau.
+ *
+ * @author Iain Hewson
+ */
+public class TableauApp {
+
+    /**
+     * The main method is just used for testing.
+     *
+     * @param args command line arguments are not used.
+     */
+    public static void main(String[] args) {
+        final int[][] valid = {{1, 4, 5, 10, 11}, {2, 6, 8}, {3, 9, 12}, {7}};
+        System.out.println(TableauApp.toString(valid));
+        System.out.println("Value Increase: "+columnValuesIncrease(valid));
+        final int[][] z = {{1, 4, 5, 8, 11}, {2, 6, 12}, {3, 9, 10}, {7}};
+        System.out.println(TableauApp.toString(z));
+        System.out.println("Value Increase: "+columnValuesIncrease(z));
+    }
+
+    /**
+     * Determines whether the array passed to it is a valid tableau or not.
+     *
+     * @param t a two-dimensional array to test for tableau-ness.
+     *
+     * @return true if the parameter is a valid tableau, otherwise false
+     */
+    public static boolean isTableau(int[][] t){
+        return false;
+    }
+
+    /**
+     *  Returns a string representation of an array based tableau.
+     *
+     * @param t a two-dimensional array which represents a tableau.
+     *
+     * @return a string representation of an array based tableau.
+     */
+    public static String toString(int[][] t) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[i].length; j++) {
+                result.append(String.format("%-4s", t[i][j]));
+            }
+            if (i < t.length-1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     *  Returns true if no row is longer than a preceding row otherwise false.
+     *
+     * @param t a two-dimensional array which represents a tableau.
+     *
+     * @return temp a boolean.
+     */
+    public static boolean rowLengthsDecrease(int[][] t){
+        int rowCount = 0;
+        int temp = 0;
+        for(int row = 0; row < t.length; row++){
+            for(int col = 0; col < t[row].length; col++){     
+                rowCount++;       
+            }// for end 
+            if(rowCount > temp && temp != 0){
+                return false;
+            }
+            temp = rowCount;
+            rowCount = 0;      
+        }// for end
+        return true;
+    }
+
+    /**
+     * Returns true if from right to left in any row  intergers are increasing.
+     *
+     * @param t a two-dimensional array which represents a tableau.
+     *
+     * @return temp a boolean.
+     */ 
+    public static boolean rowValuesIncrease(int[][] t){
+        int temp = 0;
+        for(int row = 0; row < t.length; row++){
+            temp = 0;
+            for(int col = 0; col < t[row].length; col++){
+                if(temp > t[row][col]){
+                    return false;
+                }       
+                temp = t[row][col];   
+            }
+        } 
+        return true;
+    }
+
+    /**
+     * Returns true if from top to bottom in any col  intergers are increasing.
+     *
+     * @param t a two-dimensional array which represents a tableau.
+     *
+     * @return temp a boolean.
+     */ 
+    public static boolean columnValuesIncrease(int[][] t){
+        int temp = 0;
+        for(int col = 0; col < t.length; col++){
+            System.out.println(t.length)
+            
+            temp = 0;
+            for(int row = 0;row < t[col].length; row++){
+                System.out.println("row: "+row+" col: "+col+"  "            );
+                  /*
+                //System.out.println(temp+" : "+t[row][col]);
+                if(temp > t[row][col]){
+                    return false;
+                    }     
+                temp = t[row][col];
+                  */
+                
+                }
+        } 
+        return true;
+    }
+}

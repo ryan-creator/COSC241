@@ -1,0 +1,109 @@
+package week10;
+
+import java.util.*;
+
+public class EP implements ExamPile{
+
+	private LinkedList<Integer> examPile = new LinkedList<>();
+
+    public void load(int[] item){
+    	for(int i : item){
+    		examPile.add(i);
+    	}
+    }
+
+    public int size(){
+    	return examPile.size();
+    }
+
+    public int peek() {
+    	if(isEmpty()){
+    		//throw new EmptyPileException("Empty Pile");
+    	} else {
+    		
+    	}
+    	return examPile.peek();
+    }
+
+    public int mark(){
+    	if(isEmpty()){
+    		//throw new EmptyPileException("Empty Pile");
+    	} else {
+    		
+    	}
+    	return examPile.poll();
+    }
+
+    public void delay() {
+    	if(isEmpty()){
+    		//throw new EmptyPileException("Empty Pile");
+    	} else {
+    		examPile.addLast(examPile.remove(0));
+    	}
+    }
+
+    public boolean isEmpty() {
+        return examPile.peek() == null;
+    }
+
+    public String toString(){
+    	String temp = "";
+    	for(int i = 0; i < examPile.size(); i++){
+    		temp += examPile.get(i) + " ";
+    	}
+    	return temp.trim();
+    }
+
+    public String sortingSteps(){
+    	String steps = "";
+    	while(!isEmpty()){
+    		if(examPile.getFirst() == smallest()){
+    			mark();
+    			steps += "M";
+    		} else {
+    			delay();
+    			steps += "D";
+    		}
+    	}
+    	return steps;
+    }
+
+    public int smallest(){
+    	int sma = 0;
+    	for(int i = 1; i < examPile.size(); i++){
+    		if(examPile.get(i) < examPile.get(sma)){
+    			sma = i;
+    		}
+    	}
+    	return examPile.get(sma);
+    }
+
+    public static EP reconstruct(String steps){
+    	int n = 0;
+        steps = steps.toLowerCase();
+        steps = new StringBuilder(steps).reverse().toString();
+    	for(char c : steps.toCharArray()){ 
+    		if(c == 'm'){
+    			n++;
+    		}
+    	}
+        int m = n;
+        n = n-1;
+    	LinkedList<Integer> examPile2 = new LinkedList<>();
+        for(int i = 0; i < steps.length(); i++){
+            if(steps.charAt(i) == 'm'){
+                examPile2.addFirst(n);
+                n = n - 1;
+            } else if(steps.charAt(i) == 'd'){
+                examPile2.addFirst(examPile2.pollLast());
+            }
+        }
+        EP newPile = new EP();
+        int[] array = new int[m];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = examPile2.get(i);
+        }
+        newPile.load(array);
+    	return newPile;
+    } 
+}

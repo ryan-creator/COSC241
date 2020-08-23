@@ -1,0 +1,45 @@
+Error: Could not find or load main class hi
+
+Hi.java:3: error: ')' expected
+System.out.println(hello, world!");
+^
+Hi.java:3: error: unclosed string literal
+System.out.println(hello, world!");
+^
+Hi.java:3: error: ';' expected
+System.out.println(hello, world!");
+^
+Hi.java:5: error: reached end of file while parsing
+}
+^
+4 errors
+
+Hi.java:3: error: unclosed string literal
+System.out.println("hello, world!);
+^
+Hi.java:3: error: ';' expected
+System.out.println("hello, world!);
+^
+Hi.java:5: error: reached end of file while parsing
+}
+^
+3 errors
+
+Error: Main method not found in class Hi, please define the main method as:
+public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+
+Hi.java:3: error: cannot find symbol
+System.out.printline("hello, world!");
+^
+symbol:   method printline(String)
+location: variable out of type PrintStream
+1 error
+
+Hi.java:3: error: ';' expected
+System.out.println("hello, world!")
+^
+1 error
+
+
+

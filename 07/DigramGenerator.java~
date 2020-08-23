@@ -1,0 +1,55 @@
+package week07;
+
+import java.io.*;
+import java.util.*;
+
+public class DigramGenerator implements WordGenerator {
+
+    private Random random;
+
+    public DigramGenerator(Random r) {
+        random = r;
+    }
+
+    public String nextWord(int n) {
+        return "";
+    }
+
+    public String fileToString(){
+        String output = "";
+        try {
+            Scanner scan = new Scanner(new File("first-letters.txt"));
+            while(scan.hasNext()){
+                output += scan.nextLine();
+            }
+                
+        } catch (Exception e){
+            System.out.println("File Not Found");
+        }
+        return output;
+    }
+
+    public char[] stringToArray(){
+        char temp = '';
+        char addChar = '';
+        //ArrayList<String> list = new ArrayList<String>();
+
+        char[] list = new char[26];
+        
+        try {
+            Scanner scan = new Scanner(new File("continuations.txt"));
+            while(scan.hasNext()){
+                temp = scan.nextChar();
+                
+                
+                
+                
+            }
+                
+        } catch (Exception e){
+            System.out.println("File Not Found");
+        }
+        return;
+    }
+    
+}

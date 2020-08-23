@@ -1,0 +1,47 @@
+package week07;
+
+import java.io.*;
+import java.util.*;
+
+public class FrequencyGenerator implements WordGenerator {
+
+    private Random random;
+
+    private double [] weight = new double['z' - 'a' + 1];
+
+    public FrequencyGenerator(Random r) {
+        random = r;
+        try {
+            Scanner scan = new Scanner(new File("letter-frequencies.txt"));
+            for(int i = 0; scan.hasNextDouble(); i++){
+                weight[i] = scan.nextDouble();
+            }
+            scan.close();
+        } catch (Exception e){
+            System.out.println("File not found");
+        }
+
+
+    }
+
+    public String nextWord(int n) {
+        int alphabet = 26;
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < n; i++){
+            char c = (char) ('a'+index());
+            result.append(c);
+        }
+        return result.toString();
+    }
+
+    public double index(){
+        int i = 0;
+        double r = random.nextDouble();
+        while(r > weight[i]){
+            r = r - weight[i];
+            i++;
+        }
+        return i;
+    }
+    
+}
